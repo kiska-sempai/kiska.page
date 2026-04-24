@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiska's Page Redirection</title>
+</head>
+
+<style>
+    /* Basic Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body,
+    html {
+        height: 100%;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+        /* Prevent scrolling during animation */
+    }
+
+    /* Loader Style */
+    #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #121212;
+        /* Dark background for loader */
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+    }
+
+    #loader .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #ccc;
+        border-top: 5px solid #ff8ba9;
+        /* Blue spinner color */
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Content Style */
+    #content {
+        display: none;
+        /* Initially hidden */
+        opacity: 0;
+        transition: opacity 1s ease;
+    }
+
+    #content h1 {
+        text-align: center;
+        margin-top: 20%;
+        font-size: 2.5rem;
+        color: #ff8ba9;
+    }
+
+    #content p {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #ff8ba9;
+    }
+</style>
+
+<body>
+    <!-- Loader -->
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="content">
+        <h1>Hewwou, meow! :3</h1>
+        <!-- Note: don't tell people to `click` the link, just tell them that it is a link. -->
+        <p>If you are not redirected automatically, you can follow this
+            <a href='https://discord.gg/yxqqRaBUvE'>link to my Discord server</a>🩷
+        </p>
+    </div>
+
+    <script>
+        // Wait for the entire page to load
+        window.onload = function () {
+
+            // Redirect before showing main content
+            window.location.href = 'https://discord.gg/yxqqRaBUvE'
+
+            setTimeout(() => {
+                // Fade out the loader
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+
+                // Remove the loader after the fade-out animation
+                setTimeout(() => {
+                    loader.style.display = 'none';
+
+                    // Show and fade in the main content
+                    const content = document.getElementById('content');
+                    content.style.display = 'block';
+                    setTimeout(() => {
+                        content.style.opacity = '1';
+                    }, 50);
+                }, 500); // Match the transition duration in CSS
+            }, 5000);
+        };
+    </script>
+
+</body>
+
+</html>
